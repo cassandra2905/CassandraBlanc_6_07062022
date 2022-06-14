@@ -2,6 +2,8 @@ const { hashSync } = require('bcrypt');
 const bcrypt = require('bcrypt');
 const User = require('../models/user');
 const jwt = require('jsonwebtoken');
+const validator = require('validator');
+
 //Enregistrement/création de nouveaux utilisateurs
 //Fonction signup qui va crypter le mot de passe et qui va créer un nouvel user (utilisateur)
 exports.signup = (req, res, next) => {
@@ -15,10 +17,16 @@ exports.signup = (req, res, next) => {
                 password: hash
             });
 
-            user
-                .save()
-                .then(() => res.status(201).json({message: 'Utilisateur créer ! '}))
-                .catch(error => res.status(400).json({error}));
+            user.email = validator.escape(user.email);
+
+            if (validator.isEmail(user.email)) {
+                user
+                    .save()
+                    .then(() => res.status(201).json({message: 'Utilisateur créer ! '}))
+                    .catch(error => res.status(400).json({error}));
+            } else {
+                res.status(400).json({error: "Adresse mail invalide"});
+            }            
         })
         .catch(error => res.status(500).json({hash: error}));
 };

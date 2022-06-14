@@ -1,5 +1,6 @@
 const Sauce = require('../models/sauce');
 const fs = require('fs');
+const validator = require('validator');
 
 
 //Fonction servant à enregistrer notre objet sauce
@@ -15,7 +16,10 @@ exports.createSauce = (req, res, next) => {
     dislikes: 0
   });
 
-  console.log(sauce);
+  sauce.name = validator.escape(sauce.name);
+  sauce.description = validator.escape(sauce.description);
+  sauce.manufacturer = validator.escape(sauce.manufacturer);
+  sauce.mainPepper = validator.escape(sauce.mainPepper);
 
   sauce
     .save()
