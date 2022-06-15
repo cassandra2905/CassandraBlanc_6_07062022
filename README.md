@@ -28,4 +28,4 @@ Avoir installé Node.js *v16.15.0*
 - [Cassandra BLANC](https://github.com/cassandra2905)
 
 # License
-Ce projet est sous licence Apache License 2.0 - voir le fichier [LICENSE] (https://github.com/cassandra2905/CassandraBlanc_6_07062022/blob/main/LICENSE) pour plus d'informations.
+Ce projet est sous licence Apache License 2.0 - (voir le fichier [LICENSE](https://github.com/cassandra2905/CassandraBlanc_6_07062022/blob/main/LICENSE) pour plus d'informations).
