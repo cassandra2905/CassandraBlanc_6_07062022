@@ -19,7 +19,7 @@ router.delete('/:id', auth, sauceCtrl.deleteSauce);
 
 // Route de la récupération d'un seul élément de la liste de Sauces en vente protégée avec le middleware d'authentification (auth)
 router.get('/:id', auth, sauceCtrl.getOneSauce);
-  
+
 // Route de la récupération de la liste de Sauces en vente protégée avec le middleware d'authentification (auth)
 router.get('/', auth, sauceCtrl.getAllSauce);
 

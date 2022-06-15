@@ -2,7 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const path = require('path');
 
-//Importer Router de sauce 
+//Importer Router de sauce et de user
 const sauceRoutes = require('./routes/sauce');
 const userRoutes = require('./routes/user');
 
@@ -26,6 +26,7 @@ app.use((req, res, next) => {
   next();
 });
 
+//Renvoyer des fichiers statiques pour la route images
 app.use('/images', express.static(path.join(__dirname, 'images')));
 app.use('/api/sauces', sauceRoutes);
 
