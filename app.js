@@ -7,9 +7,9 @@ const sauceRoutes = require('./routes/sauce');
 const userRoutes = require('./routes/user');
 
 // Connexion à la base de données MongoDB
-mongoose.connect('mongodb+srv://Cassandra_P6:0597POMMEVERTE@cluster0.txzvgpp.mongodb.net/p6?retryWrites=true&w=majority', {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
+mongoose.connect('mongodb+srv://userbdd29:2924AABC@cluster0.txzvgpp.mongodb.net/p6?retryWrites=true&w=majority', {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
 })
   .then(() => console.log('Connexion à MongoDB Atlas réussie !'))
   .catch(() => console.log('Connexion à MongoDB échouée !'));
