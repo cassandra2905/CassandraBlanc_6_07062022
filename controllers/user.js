@@ -20,7 +20,7 @@ exports.signup = (req, res, next) => {
             if (validator.isEmail(user.email)) {
                 user
                     .save()
-                    .then(() => res.status(201).json({ message: 'Utilisateur créer ! ' }))
+                    .then(() => res.status(201).json({ message: 'Utilisateur créé ! ' }))
                     .catch(error => res.status(400).json({ error }));
             } else {
                 res.status(400).json({ error: "Adresse mail invalide" });
@@ -55,7 +55,7 @@ exports.login = (req, res, next) => {
                         userId: user._id,
                         token: jwt.sign(
                             { userId: user._id },
-                            'RANDOM_TOKEN_SUPER_SECRET',
+                            process.env.TOKEN,
                             { expiresIn: '24h' }
 
                         )

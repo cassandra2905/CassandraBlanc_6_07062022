@@ -3,7 +3,6 @@ const mongoose = require('mongoose');
 const path = require('path');
 
 require('dotenv').config();
-console.log(process.env.DATABASE_USER);
 
 //Importer Router de sauce et de user
 const sauceRoutes = require('./routes/sauce');
