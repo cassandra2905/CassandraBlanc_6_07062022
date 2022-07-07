@@ -6,27 +6,34 @@ const validator = require('validator');
 
 //Enregistrement/création de nouveaux utilisateurs
 //Fonction signup qui va crypter le mot de passe et qui va créer un nouvel user (utilisateur)
+//Retourne une erreur à l'inscription si le mot de passe fait moins de 8 caractères
 exports.signup = (req, res, next) => {
-    bcrypt
-        .hash(req.body.password, 10)
-        .then(hash => {
-            const user = new User({
-                email: req.body.email,
-                password: hash
-            });
+    if (req.body.password.length < 8) {
+        res.status(400).json({ error: "Le mot de passe doit faire au moins 8 caractères" });
+    } else {
 
-            user.email = validator.escape(user.email);
+        bcrypt
+            .hash(req.body.password, 10)
+            .then(hash => {
+                const user = new User({
+                    email: req.body.email,
+                    password: hash
+                });
 
-            if (validator.isEmail(user.email)) {
-                user
-                    .save()
-                    .then(() => res.status(201).json({ message: 'Utilisateur créé ! ' }))
-                    .catch(error => res.status(400).json({ error: "Erreur à l'enregistrement" }));
-            } else {
-                res.status(400).json({ error: "Adresse mail invalide" });
-            }
-        })
-        .catch(error => res.status(500).json({ hash: error }));
+                user.email = validator.escape(user.email);
+
+                if (validator.isEmail(user.email)) {
+                    user
+                        .save()
+                        .then(() => res.status(201).json({ message: 'Utilisateur créé ! ' }))
+                        .catch(error => res.status(400).json({ error: "Erreur à l'enregistrement" }));
+                } else {
+                    res.status(400).json({ error: "Adresse mail invalide" });
+                }
+            })
+            .catch(error => res.status(500).json({ hash: error }));
+    }
+
 };
 
 /*VERIFICATION DES INFORMATIONS D'IDENTIFICATION D'UN UTILISATEUR*/

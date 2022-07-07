@@ -15,7 +15,7 @@ exports.createSauce = (req, res, next) => {
     dislikes: 0
   });
 
-  // Sécurisation des données pour la BDD
+
   // On vérifie si l'echelle heat est un nombre correct
   if (typeof +sauce.heat != 'number') {
     res.status(400).json({ error: "Heat n'est pas un nombre" });
